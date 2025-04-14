@@ -13,8 +13,8 @@ export default function TodoItem({todo,onToggle,onDelete}:props){
           todo.compleated ? 'line-through text-gray-400' : ''
         }`}
       >
-        <span onClick={()=>onToggle(todo._id)} className="cursor-pointer flex-1 text-white">{todo.text}</span>
-        <button onClick={()=>onDelete(todo._id)} className="ml-2 p-1 hover:text-red-500"><Trash size={16}/></button>
+        <span onClick={()=>onToggle(todo._id)} className=" flex-1 text-white">{todo.text}</span>
+        <button onClick={()=>onDelete(todo._id)} className="ml-2 p-1 hover:text-red-500 cursor-pointer"><Trash size={16}/></button>
       </div>
     );
 };
