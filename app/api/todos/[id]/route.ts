@@ -1,21 +1,19 @@
-import { NextResponse } from "next/server";
-import Todo from "@/models/todo.model";
-import connectMongo from "@/lib/mongodb";
+import { NextRequest, NextResponse } from 'next/server';
+import connectMongo from '@/lib/mongodb';
+import Todo from '@/models/todo.model';
 
 export async function DELETE(
-  req: Request,
-  { params }: { params: { id: string } }
+  req: NextRequest,
+  context: { params: { id: string } }
 ) {
+  const { id } =await context.params;
+
   await connectMongo();
-  const { id } = params;
 
   try {
     await Todo.findByIdAndDelete(id);
-    return NextResponse.json({ message: 'Todo deleted successfully' });
+    return NextResponse.json({ message: 'Todo deleted successfully' }, { status: 200 });
   } catch (error) {
-    return NextResponse.json(
-      { message: 'Error deleting todo', error },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to delete todo' }, { status: 500 });
   }
 }
