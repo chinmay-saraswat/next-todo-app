@@ -4,7 +4,7 @@ import Todo from '@/models/todo.model';
 
 export async function DELETE(
   req: NextRequest,
-  context: { params: { id: string } }
+  context: any 
 ) {
   const { id } =await context.params;
 
